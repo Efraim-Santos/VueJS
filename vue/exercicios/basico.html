@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Conceitos Básicos</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+
+    <div id="app">
+        <p>1) {{2 + 2}}</p>
+        <p>2) Produto: {{nome}}, Valor: {{preco}}</p>
+        <p>3) Hora Certa: {{horaCerta()}}</p>
+        <p>Preço com desconto: R$  {{precoComDesconto}}</p>
+        <p>
+            <a :href="link">Link</a>
+        </p>
+        <p>
+            <input type="text" v-model="sobreNome">
+            <span>{{sobreNome}}</span>
+        </p>
+        
+    </div>
+
+    <script>
+        // VueJS
+        new Vue({
+            el: "#app",
+            data: {
+                nome: 'Caneta',
+                preco: 6.89,
+                desconto: 0.15,
+                
+                sobreNome: "Maria",
+                link: "https://youtube.com/cod3rcursos"
+            },
+            methods: {
+                horaCerta(){
+                    return new Date().toLocaleString()
+                }
+            },
+            computed: {
+                precoComDesconto(){
+                    return this.preco * (1 - this.desconto)
+                }
+            },
+            // Função q escuta as modificações
+            watch: {
+                sobreNome(novoValor){
+                    console.log(novoValor.toUpperCase())   
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>
